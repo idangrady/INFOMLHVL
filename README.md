@@ -1,2 +1,2 @@
 # INFOMLHVL
- # Machine learning for human vision and language
+ Machine learning for human vision and language
