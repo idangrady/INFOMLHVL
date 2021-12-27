@@ -28,12 +28,9 @@ def flattern(mat,weight):
 
 
 def convo(mat,feature_maps):
-    num_dim = mat.ndim
-    if num_dim==2:
-        output = two_d(mat,feature_maps)
-    else:
-        output = three_d_normal(mat,feature_maps)
-    return output
+  num_dim = mat.ndim
+  return (two_d(mat, feature_maps) if num_dim == 2 else three_d_normal(
+      mat, feature_maps))
     
     
 def two_d(mat,filters):
@@ -74,39 +71,37 @@ def split_data_fetu(mat,y_val):
     return (np.vsplit(mat,y_val))
 
 def split_on_x(mat,nun):
-    check = np.split(mat,nun,axis =1)
-    max_list = [np.max(x) for x in check]
-    return max_list
+  check = np.split(mat,nun,axis =1)
+  return [np.max(x) for x in check]
   
 def map_1(mat,x_val,y_val,output_size):
-    splitted_fetures  =split_data_fetu(mat,y_val) 
-    pri = [x for x in splitted_fetures]
-    plitted_output = [split_on_x(mat,x_val) for mat in pri]
-    out_ = np.array(plitted_output).reshape(output_size)
-    return (out_)
+  splitted_fetures  =split_data_fetu(mat,y_val)
+  pri = list(splitted_fetures)
+  plitted_output = [split_on_x(mat,x_val) for mat in pri]
+  return np.array(plitted_output).reshape(output_size)
   
     
   
 if __name__ == "__main__": 
     
-    #innitiate values
-    mat = np.random.randint(0,10,[4,4])
-    featu_map =np.random.randint(-1,1,[2,2])
-    weight = np.random.randint(-1,1,[3,9])
-    print(f" Original:")
-    print(f" {mat}")
-    print("weight:")
-    print(weight)
+  #innitiate values
+  mat = np.random.randint(0,10,[4,4])
+  featu_map =np.random.randint(-1,1,[2,2])
+  weight = np.random.randint(-1,1,[3,9])
+  print(' Original:')
+  print(f" {mat}")
+  print("weight:")
+  print(weight)
 
-    print(f"filter:")
-    print(f"{featu_map}")
-    fetu = convo(mat,[featu_map])
-    print(f"convo: ")
-    print(fetu)
-    print("flattern:")
-    print(flattern(fetu,weight))
-    print("pooling:")
-    print(map_1(mat,2,2,(2,2)))
+  print('filter:')
+  print(f"{featu_map}")
+  fetu = convo(mat,[featu_map])
+  print('convo: ')
+  print(fetu)
+  print("flattern:")
+  print(flattern(fetu,weight))
+  print("pooling:")
+  print(map_1(mat,2,2,(2,2)))
     
     
     #to perform mat_pool:

@@ -21,7 +21,7 @@ class ToTensor:
 
 #hyperparameters
 
-input_size = (28* 28) # should be flattern after
+input_size = 28**2
 hidden_size = 1000
 num_classes=10
 num_epoche =1

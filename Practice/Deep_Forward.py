@@ -55,14 +55,14 @@ def gradient_num(x,y,y_predict):
 def learn_(w,x,y,num_itter =40, lr =0.1):
     
     for epoch in range(num_itter):
-        predict = forward(w,x)
-        loss_ = loss_num(x,w,y)
-        g_w = gradient_num(x,y,predict)
-        #update vakues: 
-        w = w - lr*(g_w)
-            
-        
         if epoch %5 ==0:
+            predict = forward(w,x)
+            loss_ = loss_num(x,w,y)
+            g_w = gradient_num(x,y,predict)
+            #update vakues: 
+            w = w - lr*(g_w)
+
+
             print(f"w: {w}")
             print(f"loss: {loss_}")
             
