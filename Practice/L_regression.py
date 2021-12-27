@@ -49,8 +49,7 @@ class logistic_regression(nn.Module):
         self.model  =  nn.Linear(num_input_feature, 1)
         
     def forward(self,X):
-        predict = tt.sigmoid(self.model(X))
-        return(predict)
+        return tt.sigmoid(self.model(X))
 
 class WineData(Dataset):
     
